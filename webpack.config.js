@@ -6,7 +6,8 @@ module.exports = {
   entry: './src/main.ts',
   mode: 'development',
   devServer: {
-    port: 4002
+    port: 4002,
+    historyApiFallback: true
   },
   module: {
     rules: [
@@ -34,10 +35,11 @@ module.exports = {
       name: 'vueApp',
       filename: 'remoteEntry.js',
       exposes: {
-        './App': './src/App.vue'
+        './App': './src/main.ts'
       },
       shared: {
-        vue: { singleton: true, eager: true, requiredVersion: '^3.0.0' }
+        vue: { singleton: true, eager: true, requiredVersion: '^3.0.0' },
+        'vue-router': { singleton: true, eager: true, requiredVersion: '^4.0.0' }
       }
     }),
     new HtmlWebpackPlugin({
